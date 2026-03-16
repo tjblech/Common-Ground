@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 40px auto;
+  line-height: 1.6;
+  padding: 0 20px;
+  background: #f4f7fb;
+  color: #1f2937;
+}
+
+h1 {
+  color: #1d4ed8;
+}
+
+h2 {
+  color: #111827;
+  margin-top: 32px;
+}
+
+nav {
+  margin-bottom: 30px;
+  padding: 12px 0;
+  border-bottom: 2px solid #dbeafe;
+}
+
+nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
