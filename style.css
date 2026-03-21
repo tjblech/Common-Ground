@@ -56,6 +56,14 @@ nav a:hover::after {
   width: 100%;
 }
 
+nav a.active {
+  color: #0f172a;
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
 .badge {
   display: inline-block;
   margin-bottom: 18px;
