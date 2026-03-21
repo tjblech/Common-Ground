@@ -86,8 +86,14 @@ h1 {
   margin-bottom: 0;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
 .section {
-  margin-bottom: 22px;
+  margin-bottom: 0;
   padding: 26px 28px;
   background: #ffffff;
   border-radius: 20px;
@@ -111,6 +117,18 @@ h2 {
 p {
   font-size: 18px;
   margin: 0;
+}
+
+a {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1e40af;
+  text-decoration: underline;
 }
 
 ul {
@@ -148,6 +166,10 @@ li {
 
   .subtitle {
     font-size: 19px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
   }
 
   .section {
