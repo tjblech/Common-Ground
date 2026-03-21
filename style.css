@@ -127,7 +127,7 @@ a {
   transition: color 0.2s ease;
 }
 
-a:hover {
+.grid .section a:hover {
   color: #1e40af;
   text-decoration: underline;
 }
