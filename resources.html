@@ -25,6 +25,27 @@
       </p>
     </div>
 
+    <p style="margin-bottom: 8px; font-weight: 700; color: #334155;">
+      Search resources by keyword
+    </p>
+
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search resources..." 
+      onkeyup="searchResources()"
+      style="
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 24px;
+        border-radius: 12px;
+        border: 1px solid #dbe4f0;
+        font-size: 16px;
+        outline: none;
+        box-sizing: border-box;
+      "
+    >
+
     <div class="grid">
       <div class="section">
         <h2>Immigration Legal Aid</h2>
@@ -46,6 +67,36 @@
         </p>
       </div>
 
+      <div class="section">
+        <h2>Know Your Rights</h2>
+        <p>
+          <a href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank">
+            ACLU Immigrants' Rights
+          </a><br>
+          Clear information on legal rights during immigration interactions.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Refugee Support</h2>
+        <p>
+          <a href="https://www.rescue.org" target="_blank">
+            International Rescue Committee (IRC)
+          </a><br>
+          Provides support services for refugees and displaced individuals.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Public Benefits</h2>
+        <p>
+          <a href="https://www.benefits.gov" target="_blank">
+            Benefits.gov
+          </a><br>
+          Helps users identify eligibility for government assistance programs.
+        </p>
+      </div>
+      
       <div class="section">
         <h2>Housing Support</h2>
         <p>
@@ -87,9 +138,30 @@
     </div>
 
     <div class="footer">
-      Common Ground • Early Prototype • Project by TJ Blechman
+      Common Ground • Project by TJ Blechman
     </div>
 
   </div>
+
+  <script>
+    function searchResources() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let sections = document.querySelectorAll(".section");
+
+      sections.forEach(section => {
+        if (section.innerText.includes("Current Limitations")) {
+          section.style.display = "block";
+          return;
+        }
+
+        let text = section.innerText.toLowerCase();
+        if (text.includes(input)) {
+          section.style.display = "block";
+        } else {
+          section.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 </html>
