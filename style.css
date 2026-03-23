@@ -158,6 +158,51 @@ li {
   color: #334155;
 }
 
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.tag-legal {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.tag-health {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.tag-housing {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.tag-food {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.tag-community {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.tag-benefits {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.tag-rights {
+  background: #fce7f3;
+  color: #9d174d;
+}
+
 @media (max-width: 700px) {
   body {
     padding: 24px 12px;
