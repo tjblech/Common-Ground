@@ -162,10 +162,10 @@ li {
   display: inline-block;
   font-size: 12px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
-  margin-bottom: 8px;
-  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+  letter-spacing: 0.4px;
 }
 
 .tag-legal {
@@ -178,14 +178,9 @@ li {
   color: #166534;
 }
 
-.tag-housing {
+.tag-basic {
   background: #fef3c7;
   color: #92400e;
-}
-
-.tag-food {
-  background: #fee2e2;
-  color: #991b1b;
 }
 
 .tag-community {
@@ -193,14 +188,9 @@ li {
   color: #075985;
 }
 
-.tag-benefits {
+.tag-government {
   background: #ede9fe;
   color: #5b21b6;
-}
-
-.tag-rights {
-  background: #fce7f3;
-  color: #9d174d;
 }
 
 @media (max-width: 700px) {
