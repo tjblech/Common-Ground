@@ -32,7 +32,7 @@
       type="text" 
       id="searchInput" 
       placeholder="Search resources..." 
-      onkeyup="searchResources()"
+      onkeyup="applyFilters()"
       style="
         width: 100%;
         padding: 14px 16px;
@@ -45,8 +45,17 @@
       "
     >
 
+    <div class="filters">
+      <button class="filter-btn active" onclick="setCategory('all', this)">All</button>
+      <button class="filter-btn" onclick="setCategory('legal', this)">Legal</button>
+      <button class="filter-btn" onclick="setCategory('healthcare', this)">Healthcare</button>
+      <button class="filter-btn" onclick="setCategory('basic', this)">Basic Needs</button>
+      <button class="filter-btn" onclick="setCategory('community', this)">Community</button>
+      <button class="filter-btn" onclick="setCategory('government', this)">Government</button>
+    </div>
+
     <div class="grid">
-      <div class="section">
+      <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
         <h2>Immigration Legal Aid</h2>
         <p>
@@ -57,7 +66,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
         <h2>Healthcare Access</h2>
         <p>
@@ -68,7 +77,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
         <h2>Know Your Rights</h2>
         <p>
@@ -79,7 +88,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
         <h2>Refugee Support</h2>
         <p>
@@ -90,7 +99,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="government">
         <span class="tag tag-government">GOVERNMENT</span>
         <h2>Public Benefits</h2>
         <p>
@@ -101,7 +110,7 @@
         </p>
       </div>
       
-      <div class="section">
+      <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
         <h2>Housing Support</h2>
         <p>
@@ -112,7 +121,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
         <h2>Food Assistance</h2>
         <p>
@@ -123,7 +132,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
         <h2>Language & Integration</h2>
         <p>
@@ -134,7 +143,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
         <h2>Emergency Assistance</h2>
         <p>
@@ -145,7 +154,7 @@
         </p>
       </div>
       
-      <div class="section">
+      <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
         <h2>Mental Health Support</h2>
         <p>
@@ -156,7 +165,7 @@
         </p>
       </div>
       
-      <div class="section">
+      <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
         <h2>Legal Self-Help</h2>
         <p>
@@ -184,23 +193,44 @@
   </div>
 
   <script>
-    function searchResources() {
+    let currentCategory = "all";
+
+    function setCategory(category, button) {
+      currentCategory = category;
+
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      applyFilters();
+    }
+
+    function applyFilters() {
       let input = document.getElementById("searchInput").value.toLowerCase();
-      let sections = document.querySelectorAll(".section");
+      let cards = document.querySelectorAll(".resource-card");
+      let limitationCard = Array.from(document.querySelectorAll(".section")).find(card =>
+        card.innerText.includes("Current Limitations")
+      );
 
-      sections.forEach(section => {
-        if (section.innerText.includes("Current Limitations")) {
-          section.style.display = "block";
-          return;
-        }
+      cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        let category = card.getAttribute("data-category");
 
-        let text = section.innerText.toLowerCase();
-        if (text.includes(input)) {
-          section.style.display = "block";
+        let matchesSearch = text.includes(input);
+        let matchesCategory =
+          currentCategory === "all" || category === currentCategory;
+
+        if (matchesSearch && matchesCategory) {
+          card.style.display = "block";
         } else {
-          section.style.display = "none";
+          card.style.display = "none";
         }
       });
+
+      if (limitationCard) {
+        limitationCard.style.display = "block";
+      }
     }
   </script>
 </body>
