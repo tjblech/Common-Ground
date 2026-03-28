@@ -55,7 +55,7 @@
       <button class="filter-btn" onclick="setCategory('government', this)" aria-label="Filter government resources">Government</button>
     </div>
 
-    <div id="noResults" class="no-results">
+    <div id="noResults" style="display: none;">
       No resources matched your current search or category filter.
     </div>
 
@@ -248,20 +248,17 @@
 
     function applyFilters() {
       let input = document.getElementById("searchInput").value.toLowerCase();
+      let activeCategory = document.querySelector(".filter-btn.active").dataset.category;
       let cards = document.querySelectorAll(".resource-card");
-      let limitationCard = Array.from(document.querySelectorAll(".section")).find(card =>
-        card.innerText.includes("Current Limitations")
-      );
       let visibleCount = 0;
-
+    
       cards.forEach(card => {
         let text = card.innerText.toLowerCase();
-        let category = card.getAttribute("data-category");
-
+        let category = card.dataset.category;
+    
         let matchesSearch = text.includes(input);
-        let matchesCategory =
-          currentCategory === "all" || category === currentCategory;
-
+        let matchesCategory = activeCategory === "all" || category === activeCategory;
+    
         if (matchesSearch && matchesCategory) {
           card.style.display = "block";
           visibleCount++;
@@ -269,12 +266,9 @@
           card.style.display = "none";
         }
       });
-
-      if (limitationCard) {
-        limitationCard.style.display = "block";
-      }
-
+    
       let noResults = document.getElementById("noResults");
+    
       if (visibleCount === 0) {
         noResults.style.display = "block";
       } else {
