@@ -28,10 +28,10 @@
       Search resources by keyword
     </p>
 
-    <input 
-      type="search" 
-      id="searchInput" 
-      placeholder="Search resources..." 
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Search resources..."
       onkeyup="applyFilters()"
       style="
         width: 100%;
@@ -47,23 +47,21 @@
     >
 
     <div class="filters">
-      <button class="filter-btn active" onclick="setCategory('all', this)" aria-label="Show all resources">All</button>
-      <button class="filter-btn" onclick="setCategory('legal', this)" aria-label="Filter legal resources">Legal</button>
-      <button class="filter-btn" onclick="setCategory('healthcare', this)" aria-label="Filter healthcare resources">Healthcare</button>
-      <button class="filter-btn" onclick="setCategory('basic', this)" aria-label="Filter basic needs resources">Basic Needs</button>
-      <button class="filter-btn" onclick="setCategory('community', this)" aria-label="Filter community resources">Community</button>
-      <button class="filter-btn" onclick="setCategory('government', this)" aria-label="Filter government resources">Government</button>
+      <button class="filter-btn active" data-category="all" onclick="setCategory('all', this)">All</button>
+      <button class="filter-btn" data-category="legal" onclick="setCategory('legal', this)">Legal</button>
+      <button class="filter-btn" data-category="healthcare" onclick="setCategory('healthcare', this)">Healthcare</button>
+      <button class="filter-btn" data-category="basic" onclick="setCategory('basic', this)">Basic Needs</button>
+      <button class="filter-btn" data-category="community" onclick="setCategory('community', this)">Community</button>
+      <button class="filter-btn" data-category="government" onclick="setCategory('government', this)">Government</button>
     </div>
 
-    <div id="noResults" style="display: none;">
+    <div id="noResults" class="no-results" style="display: none;">
       No resources matched your current search or category filter.
     </div>
 
     <div class="grid">
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
-        <div class="meta-row">
-        </div>
         <h2>Immigration Legal Aid</h2>
         <p>
           <a href="https://www.aila.org" target="_blank">
@@ -75,8 +73,6 @@
 
       <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
-        <div class="meta-row">
-        </div>
         <h2>Healthcare Access</h2>
         <p>
           <a href="https://findahealthcenter.hrsa.gov" target="_blank">
@@ -88,8 +84,6 @@
 
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
-        <div class="meta-row">
-        </div>
         <h2>Know Your Rights</h2>
         <p>
           <a href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank">
@@ -101,8 +95,6 @@
 
       <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
-        <div class="meta-row">
-        </div>
         <h2>Refugee Support</h2>
         <p>
           <a href="https://www.rescue.org" target="_blank">
@@ -114,8 +106,6 @@
 
       <div class="section resource-card" data-category="government">
         <span class="tag tag-government">GOVERNMENT</span>
-        <div class="meta-row">
-        </div>
         <h2>Public Benefits</h2>
         <p>
           <a href="https://www.benefits.gov" target="_blank">
@@ -124,11 +114,9 @@
           Helps users identify eligibility for government assistance programs.
         </p>
       </div>
-      
+
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
-        <div class="meta-row">
-        </div>
         <h2>Housing Support</h2>
         <p>
           <a href="https://www.hud.gov/topics/rental_assistance" target="_blank">
@@ -140,8 +128,6 @@
 
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
-        <div class="meta-row">
-        </div>
         <h2>Food Assistance</h2>
         <p>
           <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">
@@ -153,8 +139,6 @@
 
       <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
-        <div class="meta-row">
-        </div>
         <h2>Language & Integration</h2>
         <p>
           <a href="https://www.usahello.org" target="_blank">
@@ -166,8 +150,6 @@
 
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
-        <div class="meta-row">
-        </div>
         <h2>Emergency Assistance</h2>
         <p>
           <a href="https://www.redcross.org" target="_blank">
@@ -176,11 +158,9 @@
           Emergency shelter, disaster relief, and crisis support services.
         </p>
       </div>
-      
+
       <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
-        <div class="meta-row">
-        </div>
         <h2>Mental Health Support</h2>
         <p>
           <a href="https://www.nami.org" target="_blank">
@@ -189,17 +169,24 @@
           Mental health education, support groups, and resources for individuals and families.
         </p>
       </div>
-      
+
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
-        <div class="meta-row">
-        </div>
         <h2>Legal Self-Help</h2>
         <p>
           <a href="https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help" target="_blank">
             Legal Services Corporation
           </a><br>
           Directory of free legal aid organizations across the U.S.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Current Limitations</h2>
+        <p>
+          This prototype includes a set of example resources. Future
+          development will focus on expanding coverage and filtering
+          functionality.
         </p>
       </div>
     </div>
@@ -226,17 +213,16 @@
 
     function applyFilters() {
       let input = document.getElementById("searchInput").value.toLowerCase();
-      let activeCategory = document.querySelector(".filter-btn.active").dataset.category;
       let cards = document.querySelectorAll(".resource-card");
       let visibleCount = 0;
-    
+
       cards.forEach(card => {
         let text = card.innerText.toLowerCase();
-        let category = card.dataset.category;
-    
+        let category = card.getAttribute("data-category");
+
         let matchesSearch = text.includes(input);
-        let matchesCategory = activeCategory === "all" || category === activeCategory;
-    
+        let matchesCategory = currentCategory === "all" || category === currentCategory;
+
         if (matchesSearch && matchesCategory) {
           card.style.display = "block";
           visibleCount++;
@@ -244,15 +230,16 @@
           card.style.display = "none";
         }
       });
-    
+
       let noResults = document.getElementById("noResults");
-    
       if (visibleCount === 0) {
         noResults.style.display = "block";
       } else {
         noResults.style.display = "none";
       }
     }
+
+    applyFilters();
   </script>
 </body>
 </html>
