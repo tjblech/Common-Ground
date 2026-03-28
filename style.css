@@ -262,6 +262,38 @@ li {
   color: #5b21b6;
 }
 
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.meta-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.no-results {
+  display: none;
+  margin-top: 6px;
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-weight: 600;
+}
+
 @media (max-width: 700px) {
   body {
     padding: 24px 12px;
