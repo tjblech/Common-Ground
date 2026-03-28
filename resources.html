@@ -43,20 +43,29 @@
         outline: none;
         box-sizing: border-box;
       "
+      aria-label="Search resources"
     >
 
     <div class="filters">
-      <button class="filter-btn active" onclick="setCategory('all', this)">All</button>
-      <button class="filter-btn" onclick="setCategory('legal', this)">Legal</button>
-      <button class="filter-btn" onclick="setCategory('healthcare', this)">Healthcare</button>
-      <button class="filter-btn" onclick="setCategory('basic', this)">Basic Needs</button>
-      <button class="filter-btn" onclick="setCategory('community', this)">Community</button>
-      <button class="filter-btn" onclick="setCategory('government', this)">Government</button>
+      <button class="filter-btn active" onclick="setCategory('all', this)" aria-label="Show all resources">All</button>
+      <button class="filter-btn" onclick="setCategory('legal', this)" aria-label="Filter legal resources">Legal</button>
+      <button class="filter-btn" onclick="setCategory('healthcare', this)" aria-label="Filter healthcare resources">Healthcare</button>
+      <button class="filter-btn" onclick="setCategory('basic', this)" aria-label="Filter basic needs resources">Basic Needs</button>
+      <button class="filter-btn" onclick="setCategory('community', this)" aria-label="Filter community resources">Community</button>
+      <button class="filter-btn" onclick="setCategory('government', this)" aria-label="Filter government resources">Government</button>
+    </div>
+
+    <div id="noResults" class="no-results">
+      No resources matched your current search or category filter.
     </div>
 
     <div class="grid">
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Professional Network</span>
+        </div>
         <h2>Immigration Legal Aid</h2>
         <p>
           <a href="https://www.aila.org" target="_blank">
@@ -68,6 +77,10 @@
 
       <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Low Cost</span>
+        </div>
         <h2>Healthcare Access</h2>
         <p>
           <a href="https://findahealthcenter.hrsa.gov" target="_blank">
@@ -79,6 +92,10 @@
 
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Rights Info</span>
+        </div>
         <h2>Know Your Rights</h2>
         <p>
           <a href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank">
@@ -90,6 +107,10 @@
 
       <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Refugee Support</span>
+        </div>
         <h2>Refugee Support</h2>
         <p>
           <a href="https://www.rescue.org" target="_blank">
@@ -101,6 +122,10 @@
 
       <div class="section resource-card" data-category="government">
         <span class="tag tag-government">GOVERNMENT</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Benefits</span>
+        </div>
         <h2>Public Benefits</h2>
         <p>
           <a href="https://www.benefits.gov" target="_blank">
@@ -112,6 +137,10 @@
       
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Housing</span>
+        </div>
         <h2>Housing Support</h2>
         <p>
           <a href="https://www.hud.gov/topics/rental_assistance" target="_blank">
@@ -123,6 +152,10 @@
 
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Food</span>
+        </div>
         <h2>Food Assistance</h2>
         <p>
           <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">
@@ -134,6 +167,10 @@
 
       <div class="section resource-card" data-category="community">
         <span class="tag tag-community">COMMUNITY</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Language</span>
+        </div>
         <h2>Language & Integration</h2>
         <p>
           <a href="https://www.usahello.org" target="_blank">
@@ -145,6 +182,10 @@
 
       <div class="section resource-card" data-category="basic">
         <span class="tag tag-basic">BASIC NEEDS</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Emergency</span>
+        </div>
         <h2>Emergency Assistance</h2>
         <p>
           <a href="https://www.redcross.org" target="_blank">
@@ -156,6 +197,10 @@
       
       <div class="section resource-card" data-category="healthcare">
         <span class="tag tag-health">HEALTHCARE</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Mental Health</span>
+        </div>
         <h2>Mental Health Support</h2>
         <p>
           <a href="https://www.nami.org" target="_blank">
@@ -167,6 +212,10 @@
       
       <div class="section resource-card" data-category="legal">
         <span class="tag tag-legal">LEGAL</span>
+        <div class="meta-row">
+          <span class="meta-tag">National</span>
+          <span class="meta-tag">Free Legal Aid</span>
+        </div>
         <h2>Legal Self-Help</h2>
         <p>
           <a href="https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help" target="_blank">
@@ -212,6 +261,7 @@
       let limitationCard = Array.from(document.querySelectorAll(".section")).find(card =>
         card.innerText.includes("Current Limitations")
       );
+      let visibleCount = 0;
 
       cards.forEach(card => {
         let text = card.innerText.toLowerCase();
@@ -223,6 +273,7 @@
 
         if (matchesSearch && matchesCategory) {
           card.style.display = "block";
+          visibleCount++;
         } else {
           card.style.display = "none";
         }
@@ -230,6 +281,13 @@
 
       if (limitationCard) {
         limitationCard.style.display = "block";
+      }
+
+      let noResults = document.getElementById("noResults");
+      if (visibleCount === 0) {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
       }
     }
   </script>
