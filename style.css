@@ -153,51 +153,88 @@ li {
 }
 
 .footer {
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
-  text-align: left;
+  margin-top: 52px;
+  padding: 28px 30px 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  background: linear-gradient(to bottom right, #f8fbff 0%, #eef4ff 100%);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dbe4f0;
 }
 
 .footer-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   color: #0f172a;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .footer-subtitle {
-  font-size: 16px;
+  font-size: 17px;
   color: #475569;
-  margin-bottom: 12px;
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.footer-link {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2563eb;
+.footer-button {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #1d4ed8;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
-  transition: all 0.2s ease;
-  position: relative;
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.footer-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: #2563eb;
-  transition: width 0.25s ease;
+.footer-button:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.18);
 }
 
-.footer-link:hover::after {
-  width: 100%;
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  flex-wrap: wrap;
 }
 
-.footer-link:hover {
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links a {
+  font-size: 15px;
+  font-weight: 700;
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
   color: #1d4ed8;
+}
+
+.footer-note {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
 }
 
 .tag {
@@ -364,5 +401,29 @@ li {
   nav a {
     margin-right: 18px;
     font-size: 15px;
+  }
+
+  .footer {
+    padding: 24px 20px 20px;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-title {
+    font-size: 24px;
+  }
+
+  .footer-subtitle {
+    font-size: 16px;
+  }
+
+  .footer-button {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
   }
 }
