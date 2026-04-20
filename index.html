@@ -1,290 +1,143 @@
-.hero-split {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 28px;
-  align-items: center;
-  padding-bottom: 28px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Common Ground</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
 
-.hero-copy h1 {
-  max-width: 700px;
-}
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="resources.html">Resources</a>
+      <a href="community.html">Community</a>
+    </nav>
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 26px;
-}
+    <div class="badge">Platform Concept</div>
 
-.primary-btn,
-.secondary-btn {
-  display: inline-block;
-  padding: 13px 18px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.22s ease;
-}
+    <section class="hero hero-split">
+      <div class="hero-copy">
+        <h1>Trusted support, organized in one place.</h1>
+        <p class="subtitle">
+          Common Ground is a platform concept focused on making legal,
+          healthcare, and community resources easier for immigrant families
+          to find, understand, and access.
+        </p>
 
-.primary-btn {
-  background: #1d4ed8;
-  color: white;
-  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.16);
-}
+        <div class="hero-actions">
+          <a href="resources.html" class="primary-btn">Explore Resources</a>
+          <a href="about.html" class="secondary-btn">Learn More</a>
+        </div>
+      </div>
 
-.primary-btn:hover {
-  background: #1e40af;
-  transform: translateY(-2px);
-}
+      <div class="hero-visual">
+        <div class="visual-card visual-card-main">
+          <span class="visual-label">Verified Resources</span>
+          <h3>Clear categories. Trusted information. Better access.</h3>
+          <p>
+            A more accessible way to organize legal aid, healthcare,
+            housing, and community support.
+          </p>
+        </div>
 
-.secondary-btn {
-  background: #ffffff;
-  color: #1d4ed8;
-  border: 1px solid #cbd5e1;
-}
+        <div class="visual-card visual-card-small">
+          <span class="mini-tag legal">Legal</span>
+          <span class="mini-tag health">Healthcare</span>
+          <span class="mini-tag community">Community</span>
+        </div>
+      </div>
+    </section>
 
-.secondary-btn:hover {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  transform: translateY(-2px);
-}
+    <section class="focus-strip">
+      <div class="focus-item">
+        <span class="focus-dot legal-dot"></span>
+        <span>Legal Support</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-dot health-dot"></span>
+        <span>Healthcare Access</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-dot community-dot"></span>
+        <span>Community Resources</span>
+      </div>
+    </section>
 
-.hero-visual {
-  position: relative;
-  min-height: 320px;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at top left, rgba(191, 219, 254, 0.9), transparent 45%),
-    radial-gradient(circle at bottom right, rgba(224, 242, 254, 0.95), transparent 40%),
-    linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
-  border: 1px solid #dbe4f0;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
-  overflow: hidden;
-}
+    <section class="section intro-section">
+      <h2>Designed to reduce friction</h2>
+      <p>
+        Critical support is often fragmented across many organizations,
+        websites, and systems. Common Ground is intended to bring trusted
+        resources into a structure that feels clearer, more searchable,
+        and easier to navigate.
+      </p>
+    </section>
 
-.visual-card {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #e2e8f0;
-  border-radius: 22px;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
-}
+    <div class="grid feature-grid">
+      <div class="section">
+        <h2>Trusted Resources</h2>
+        <p>
+          Highlight verified organizations and support services that users
+          can rely on.
+        </p>
+      </div>
 
-.visual-card-main {
-  top: 32px;
-  left: 28px;
-  right: 28px;
-  padding: 22px 22px 20px;
-}
+      <div class="section">
+        <h2>Clear Organization</h2>
+        <p>
+          Group information by category and need so people can find relevant
+          help faster.
+        </p>
+      </div>
 
-.visual-card-main h3 {
-  margin: 10px 0 10px 0;
-  font-size: 28px;
-  line-height: 1.15;
-  color: #0f172a;
-}
+      <div class="section">
+        <h2>Accessible Design</h2>
+        <p>
+          Present information in a format that is easier to understand,
+          compare, and act on.
+        </p>
+      </div>
 
-.visual-card-main p {
-  font-size: 16px;
-  color: #475569;
-}
+      <div class="section">
+        <h2>Community-Focused</h2>
+        <p>
+          Connect direct services with broader community support, education,
+          and outreach.
+        </p>
+      </div>
+    </div>
 
-.visual-card-small {
-  left: 28px;
-  bottom: 28px;
-  padding: 14px 16px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+    <section class="section highlight-section">
+      <div class="highlight-copy">
+        <h2>More than a list of links</h2>
+        <p>
+          The long-term goal is not just to collect resources, but to build a
+          system that helps people identify what kind of support they need and
+          navigate it with more confidence.
+        </p>
+      </div>
 
-.visual-label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  color: #3157c7;
-  background: #e8f0ff;
-  border-radius: 999px;
-  padding: 6px 11px;
-  letter-spacing: 0.2px;
-}
+      <div class="highlight-actions">
+        <a href="resources.html" class="primary-btn">View Example Resources</a>
+      </div>
+    </section>
 
-.mini-tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 7px 12px;
-  border-radius: 999px;
-}
+    <div class="footer">
+      <div class="footer-top">
+        <div>
+          <p class="footer-title">Common Ground</p>
+          <p class="footer-subtitle">
+            Helping connect people with trusted legal, healthcare, and community resources.
+          </p>
+        </div>
 
-.mini-tag.legal {
-  background: #e0e7ff;
-  color: #3730a3;
-}
+        <a class="footer-button" href="mailto:cgplatform.contact@gmail.com">
+          Reach Out
+        </a>
+      </div>
+    </div>
 
-.mini-tag.health {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.mini-tag.community {
-  background: #e0f2fe;
-  color: #075985;
-}
-
-.focus-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 6px 0 30px;
-}
-
-.focus-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 15px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #334155;
-}
-
-.focus-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  display: inline-block;
-}
-
-.legal-dot {
-  background: #6366f1;
-}
-
-.health-dot {
-  background: #22c55e;
-}
-
-.community-dot {
-  background: #0ea5e9;
-}
-
-.intro-section {
-  margin-bottom: 18px;
-}
-
-.feature-grid {
-  margin-top: 0;
-}
-
-.highlight-section {
-  margin-top: 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.highlight-copy {
-  max-width: 640px;
-}
-
-.footer {
-  margin-top: 52px;
-  padding: 28px 30px 22px;
-  border: 1px solid #e2e8f0;
-  border-radius: 24px;
-  background: linear-gradient(to bottom right, #f8fbff 0%, #eef4ff 100%);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-}
-
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.footer-title {
-  font-size: 28px;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 8px 0;
-}
-
-.footer-subtitle {
-  font-size: 17px;
-  color: #475569;
-  max-width: 560px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.footer-button {
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 999px;
-  background: #1d4ed8;
-  color: white;
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.footer-button:hover {
-  background: #1e40af;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.18);
-}
-
-@media (max-width: 900px) {
-  .hero-split {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    min-height: 280px;
-  }
-
-  .highlight-section,
-  .footer-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 700px) {
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .primary-btn,
-  .secondary-btn,
-  .footer-button {
-    text-align: center;
-  }
-
-  .footer {
-    padding: 24px 20px 20px;
-  }
-
-  .footer-title {
-    font-size: 24px;
-  }
-
-  .footer-subtitle {
-    font-size: 16px;
-  }
-
-  .visual-card-main h3 {
-    font-size: 23px;
-  }
-}
+  </div>
+</body>
+</html>
