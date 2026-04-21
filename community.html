@@ -171,22 +171,128 @@
           const card = document.createElement("div");
           card.className = "event-card";
 
-          card.innerHTML = `
-            <p class="event-date">${formattedDate} · ${formattedTime}</p>
-            <h3>${event.summary || "Untitled Event"}</h3>
-            ${event.location ? `<p class="event-location">${event.location}</p>` : ""}
-            <p class="event-desc">${event.description ? event.description : "More details coming soon."}</p>
-          `;
+<script>
+  const API_KEY = "YOUR_API_KEY_HERE";
+  const CALENDAR_ID = "cgplatform.contact@gmail.com";
 
-          container.appendChild(card);
-        });
-      } catch (error) {
-        console.error(error);
-        container.innerHTML = "<p>Unable to load events right now.</p>";
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text || "";
+    return div.innerHTML;
+  }
+
+  function parseDescription(description) {
+    const lines = (description || "")
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.length > 0);
+
+    let category = "";
+    let format = "";
+    let organization = "";
+    let location = "";
+    let eventLink = "";
+    let bodyLines = [];
+
+    for (const line of lines) {
+      if (line.startsWith("Category:")) {
+        category = line.replace("Category:", "").trim();
+      } else if (line.startsWith("Format:")) {
+        format = line.replace("Format:", "").trim();
+      } else if (line.startsWith("Organization:")) {
+        organization = line.replace("Organization:", "").trim();
+      } else if (line.startsWith("Location:")) {
+        location = line.replace("Location:", "").trim();
+      } else if (line.startsWith("Event Link:")) {
+        const inline = line.replace("Event Link:", "").trim();
+        if (inline) eventLink = inline;
+      } else if (line.startsWith("http")) {
+        eventLink = line;
+      } else if (line !== "Submitted via Common Ground") {
+        bodyLines.push(line);
       }
     }
 
-    loadEvents();
-  </script>
-</body>
-</html>
+    return {
+      category,
+      format,
+      organization,
+      location,
+      eventLink,
+      body: bodyLines.join(" ")
+    };
+  }
+
+  async function loadEvents() {
+    const now = new Date().toISOString();
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${now}&maxResults=6&singleEvents=true&orderBy=startTime`;
+
+    const container = document.getElementById("events");
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error(data);
+        container.innerHTML = "<p>Unable to load events right now.</p>";
+        return;
+      }
+
+      container.innerHTML = "";
+
+      if (!data.items || data.items.length === 0) {
+        container.innerHTML = "<p>No upcoming events yet.</p>";
+        return;
+      }
+
+      data.items.forEach(event => {
+        const startRaw = event.start.dateTime || event.start.date;
+        const start = new Date(startRaw);
+
+        const formattedDate = start.toLocaleDateString([], {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        });
+
+        const formattedTime = event.start.dateTime
+          ? start.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })
+          : "All day";
+
+        const parsed = parseDescription(event.description || "");
+
+        const metaTags = [];
+        if (parsed.category) metaTags.push(`<span class="event-meta-tag">${escapeHtml(parsed.category)}</span>`);
+        if (parsed.format) metaTags.push(`<span class="event-meta-tag">${escapeHtml(parsed.format)}</span>`);
+        if (parsed.organization) metaTags.push(`<span class="event-meta-tag">${escapeHtml(parsed.organization)}</span>`);
+
+        const card = document.createElement("div");
+        card.className = "event-card";
+
+        card.innerHTML = `
+          <p class="event-date">${formattedDate} · ${formattedTime}</p>
+          <h3>${escapeHtml(event.summary || "Untitled Event")}</h3>
+
+          ${parsed.location ? `<p class="event-location">${escapeHtml(parsed.location)}</p>` : ""}
+
+          ${metaTags.length ? `<div class="event-meta-row">${metaTags.join("")}</div>` : ""}
+
+          ${parsed.body ? `<p class="event-desc">${escapeHtml(parsed.body)}</p>` : ""}
+
+          ${parsed.eventLink ? `<p><a class="event-link" href="${escapeHtml(parsed.eventLink)}" target="_blank">View event details</a></p>` : ""}
+        `;
+
+        container.appendChild(card);
+      });
+    } catch (error) {
+      console.error(error);
+      container.innerHTML = "<p>Unable to load events right now.</p>";
+    }
+  }
+
+  loadEvents();
+</script>
