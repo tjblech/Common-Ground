@@ -694,6 +694,72 @@ li {
 }
 
 /* =========================
+   About Page
+========================= */
+
+.page-kicker {
+  display: inline-block;
+  margin: 0 0 14px;
+  color: #3157c7;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.about-hero h1 {
+  max-width: 760px;
+}
+
+.about-hero .subtitle {
+  max-width: 760px;
+}
+
+.about-intro {
+  margin-bottom: 18px;
+}
+
+.about-grid {
+  margin-bottom: 18px;
+}
+
+.about-highlight {
+  margin-bottom: 18px;
+}
+
+.about-highlight-copy {
+  max-width: 760px;
+}
+
+.about-focus {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.about-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.about-cta-copy {
+  max-width: 620px;
+}
+
+.about-cta-actions {
+  margin-top: 8px;
+}
+
+@media (max-width: 980px) {
+  .about-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================
    Responsive
 ========================= */
 
