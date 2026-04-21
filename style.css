@@ -32,15 +32,47 @@ body {
    Navigation
 ========================= */
 
-nav {
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
   margin-bottom: 34px;
   padding-bottom: 16px;
   border-bottom: 1px solid #dbe4f0;
 }
 
-nav a {
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
   display: inline-block;
-  margin-right: 26px;
   text-decoration: none;
   color: #1d4ed8;
   font-weight: 700;
@@ -50,11 +82,7 @@ nav a {
   transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
-nav a:last-child {
-  margin-right: 0;
-}
-
-nav a::after {
+.nav-links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -66,21 +94,46 @@ nav a::after {
   transition: width 0.25s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: #1e40af;
   transform: translateY(-1px);
 }
 
-nav a:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-nav a.active {
+.nav-links a.active {
   color: #0f172a;
 }
 
-nav a.active::after {
+.nav-links a.active::after {
   width: 100%;
+}
+
+@media (max-width: 700px) {
+  .site-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .brand-text {
+    font-size: 20px;
+  }
+
+  .brand-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
 }
 
 /* =========================
