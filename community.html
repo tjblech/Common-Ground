@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Community - Common Ground</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <div class="container">
@@ -14,55 +16,98 @@
       <a href="community.html" class="active">Community</a>
     </nav>
 
-    <div class="badge">Community Support</div>
+    <section class="hero community-hero">
+      <p class="page-kicker">Community</p>
 
-    <div class="hero">
-      <h1>Community Organizing</h1>
+      <h1>Support is stronger when communities are connected.</h1>
 
       <p class="subtitle">
-        In addition to formal services, strong communities depend on local support
-        networks, advocacy, education, and shared access to trustworthy information.
+        In addition to formal services, people often rely on local organizations,
+        advocacy groups, educational programs, and shared community knowledge to
+        find support and stay informed.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Why It Matters</h2>
+    <section class="section community-intro">
+      <h2>Why community matters</h2>
       <p>
-        Many people do not find support through institutions alone. Community groups,
-        mutual aid efforts, local nonprofits, and educational organizations often play
-        a major role in helping families navigate legal, healthcare, housing, and
-        language barriers.
+        Many people do not find support through institutions alone. Mutual aid
+        efforts, neighborhood groups, nonprofits, advocacy organizations, and
+        local workshops often help families navigate legal, healthcare, housing,
+        and language barriers in more direct and personal ways.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Examples of Community Support</h2>
-      <p>
-        Community organizing can include know-your-rights workshops, language learning
-        groups, neighborhood outreach, volunteer networks, local advocacy efforts, and
-        partnerships with nonprofits that help people access critical resources.
-      </p>
-    </div>
+    <section class="grid community-grid">
+      <div class="section">
+        <h2>Local support networks</h2>
+        <p>
+          Community support can include volunteer networks, neighborhood outreach,
+          nonprofit partnerships, and local groups that help connect people with
+          trusted resources.
+        </p>
+      </div>
 
-    <div class="section">
-      <h2>Future Direction</h2>
-      <p>
-        Future versions of Common Ground could highlight local organizations,
-        educational events, and community-led initiatives alongside direct service
-        resources, making the platform more useful not only for finding help, but
-        also for building connection and long-term support.
-      </p>
-    </div>
+      <div class="section">
+        <h2>Education and advocacy</h2>
+        <p>
+          Workshops, know-your-rights events, language learning spaces, and
+          community-led initiatives play an important role in helping people
+          access information with more clarity and confidence.
+        </p>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Current Stage</h2>
-      <p>
-        This page represents an early concept for how community-based support and
-        organizing could be included in the broader Common Ground platform.
-      </p>
-    </div>
+    <section class="focus-strip community-focus">
+      <div class="focus-item">
+        <span class="focus-dot legal-dot"></span>
+        <span>Know-your-rights workshops</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-dot health-dot"></span>
+        <span>Health and support events</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-dot basic-dot"></span>
+        <span>Local aid and outreach</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-dot community-dot"></span>
+        <span>Language and community programs</span>
+      </div>
+    </section>
 
-    <div class="footer">
+    <section class="section community-events-section">
+      <div class="community-events-header">
+        <div>
+          <h2>Community Events</h2>
+          <p class="community-events-subtitle">
+            Upcoming events, workshops, and local community opportunities.
+          </p>
+        </div>
+      </div>
+
+      <div id="events" class="events-grid">
+        <p>Loading events...</p>
+      </div>
+    </section>
+
+    <section class="section community-cta">
+      <div class="community-cta-copy">
+        <h2>Building connection alongside access</h2>
+        <p>
+          Common Ground brings together not only direct services, but also the
+          events, education, and community support that help people stay connected
+          and informed.
+        </p>
+      </div>
+
+      <div class="community-cta-actions">
+        <a href="resources.html" class="primary-btn">Browse Resources</a>
+      </div>
+    </section>
+
+    <footer class="footer">
       <div class="footer-top">
         <div>
           <p class="footer-title">Common Ground</p>
@@ -70,13 +115,78 @@
             Helping connect people with trusted legal, healthcare, and community resources.
           </p>
         </div>
-    
+
         <a class="footer-button" href="mailto:cgplatform.contact@gmail.com">
           Reach Out
         </a>
       </div>
-    </div>
+    </footer>
 
   </div>
+
+  <script>
+    const API_KEY = "YOUR_API_KEY_HERE";
+    const CALENDAR_ID = "cgplatform.contact@gmail.com";
+
+    async function loadEvents() {
+      const now = new Date().toISOString();
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${now}&maxResults=6&singleEvents=true&orderBy=startTime`;
+
+      const container = document.getElementById("events");
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.error(data);
+          container.innerHTML = "<p>Unable to load events right now.</p>";
+          return;
+        }
+
+        container.innerHTML = "";
+
+        if (!data.items || data.items.length === 0) {
+          container.innerHTML = "<p>No upcoming events yet.</p>";
+          return;
+        }
+
+        data.items.forEach(event => {
+          const startRaw = event.start.dateTime || event.start.date;
+          const start = new Date(startRaw);
+
+          const formattedDate = start.toLocaleDateString([], {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          });
+
+          const formattedTime = event.start.dateTime
+            ? start.toLocaleTimeString([], {
+                hour: "numeric",
+                minute: "2-digit"
+              })
+            : "All day";
+
+          const card = document.createElement("div");
+          card.className = "event-card";
+
+          card.innerHTML = `
+            <p class="event-date">${formattedDate} · ${formattedTime}</p>
+            <h3>${event.summary || "Untitled Event"}</h3>
+            ${event.location ? `<p class="event-location">${event.location}</p>` : ""}
+            <p class="event-desc">${event.description ? event.description : "More details coming soon."}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = "<p>Unable to load events right now.</p>";
+      }
+    }
+
+    loadEvents();
+  </script>
 </body>
 </html>
