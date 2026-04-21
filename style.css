@@ -763,6 +763,30 @@ li {
    Community Page
 ========================= */
 
+.submit-event-section {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.submit-event-copy {
+  max-width: 620px;
+}
+
+.submit-event-actions {
+  margin-top: 18px;
+}
+
+@media (max-width: 980px) {
+  .submit-event-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .event-meta-row {
   display: flex;
   flex-wrap: wrap;
