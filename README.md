@@ -1,31 +1,38 @@
-# Common-Ground
+# Common Ground
 
-Common Ground is an early-stage platform focused on improving access to legal, healthcare, and community resources for immigrant families in the United States.
+Common Ground is a web platform that centralizes trusted legal, healthcare, and community resources while enabling community members and organizations to share events and support opportunities.
 
 ## Overview
 
-This project explores how fragmented support systems can be reorganized into a centralized, accessible structure. The goal is to reduce the difficulty of finding reliable information across legal aid, healthcare services, housing assistance, and community programs.
+Common Ground addresses the challenge of fragmented support systems by organizing critical information into a structured, accessible interface. In addition to resource discovery, the platform integrates a community event system to highlight local programs, workshops, and services.
 
 ## Features
 
-- Resource categorization (legal, healthcare, housing, etc.)
-- Verified resources with external links
-- Search functionality for filtering resources
-- Multi-page layout (Home, About, Resources)
+- Structured resource categories (legal, healthcare, housing, community, etc.)
+- Clean, readable resource listings with external links
+- Interactive filtering system for browsing resources
+- Community event calendar with real-time updates
+- Event submission system with approval workflow
+- Automated pipeline:
+  - Google Form → Google Sheets → Approval → Calendar → Website
+- Responsive multi-page layout (Home, About, Resources, Community)
 
-## Future Development
+## System Workflow
 
-Planned directions for the project include:
-- a searchable database of resources
-- filtering by location and category
-- improved data organization and verification
-- potential AI-assisted guidance for navigating services
+- Users submit events through a form
+- Submissions are stored and reviewed in Google Sheets
+- Approved events are automatically added to Google Calendar via Apps Script
+- Events are displayed dynamically on the website
 
 ## Tech Stack
 
 - HTML
 - CSS
-- Basic JavaScript (client-side search)
+- JavaScript (client-side rendering + API integration)
+- Google Forms (data collection)
+- Google Sheets (data storage and moderation)
+- Google Apps Script (automation)
+- Google Calendar API (event display)
 
 ## Author
 
