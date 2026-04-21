@@ -760,6 +760,67 @@ li {
 }
 
 /* =========================
+   Community Page
+========================= */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.event-card {
+  padding: 22px 22px 20px;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid #e8edf5;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.045);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(37, 99, 235, 0.10);
+  border-color: #c7d7ee;
+}
+
+.event-card h3 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 0 0 10px 0;
+  color: #0f172a;
+}
+
+.event-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3157c7;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.event-location {
+  font-size: 15px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.event-desc {
+  font-size: 16px;
+  color: #475569;
+  line-height: 1.65;
+}
+
+@media (max-width: 700px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
    Responsive
 ========================= */
 
