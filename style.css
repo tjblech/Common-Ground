@@ -1079,3 +1079,214 @@ li {
     font-size: 16px;
   }
 }
+
+@media (max-width: 700px) {
+  body {
+    padding: 14px 8px;
+  }
+
+  .container {
+    padding: 18px 14px 24px;
+    border-radius: 18px;
+  }
+
+  nav {
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+  }
+
+  nav a {
+    margin-right: 14px;
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  h1 {
+    font-size: 38px;
+    line-height: 1.04;
+    letter-spacing: -0.8px;
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .hero {
+    margin-bottom: 28px;
+  }
+
+  .dark-hero {
+    padding: 20px 16px;
+    border-radius: 22px;
+    gap: 24px;
+  }
+
+  .dark-hero h1 {
+    font-size: 38px;
+    max-width: 100%;
+  }
+
+  .dark-hero .subtitle {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .hero-kicker {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .hero-stats {
+    margin-top: 14px;
+    gap: 4px;
+  }
+
+  .hero-stat {
+    font-size: 14px;
+  }
+
+  .primary-btn,
+  .secondary-btn,
+  .footer-button {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 16px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .hero-graphic,
+  .graphic-panel {
+    min-height: 260px;
+  }
+
+  .card-main {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 16px;
+  }
+
+  .card-main h3 {
+    font-size: 19px;
+    margin: 8px 0;
+  }
+
+  .card-main p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .card-small {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .card-legal {
+    left: 18px;
+    bottom: 82px;
+  }
+
+  .card-health {
+    right: 16px;
+    top: 170px;
+  }
+
+  .card-basic {
+    left: 74px;
+    bottom: 18px;
+  }
+
+  .card-community {
+    right: 22px;
+    bottom: 44px;
+  }
+
+  .node,
+  .line {
+    display: none;
+  }
+
+  .section {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .focus-strip {
+    gap: 10px;
+    margin: 14px 0 22px;
+  }
+
+  .focus-item {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 11px 13px;
+    font-size: 13px;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .event-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .event-card h3 {
+    font-size: 20px;
+  }
+
+  .event-desc {
+    font-size: 15px;
+  }
+
+  .footer {
+    margin-top: 34px;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .footer-top,
+  .highlight-section,
+  .about-cta,
+  .community-cta,
+  .submit-event-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .footer-title {
+    font-size: 24px;
+  }
+
+  .footer-subtitle {
+    font-size: 15px;
+    max-width: 100%;
+  }
+}
