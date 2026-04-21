@@ -125,54 +125,7 @@
   </div>
 
   <script>
-    const API_KEY = "AIzaSyBw6ni89vkOM_8V1yJ0cvfrhAFENk3AGHk";
-    const CALENDAR_ID = "cgplatform.contact@gmail.com";
-
-    async function loadEvents() {
-      const now = new Date().toISOString();
-      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${now}&maxResults=6&singleEvents=true&orderBy=startTime`;
-
-      const container = document.getElementById("events");
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (!res.ok) {
-          console.error(data);
-          container.innerHTML = "<p>Unable to load events right now.</p>";
-          return;
-        }
-
-        container.innerHTML = "";
-
-        if (!data.items || data.items.length === 0) {
-          container.innerHTML = "<p>No upcoming events yet.</p>";
-          return;
-        }
-
-        data.items.forEach(event => {
-          const startRaw = event.start.dateTime || event.start.date;
-          const start = new Date(startRaw);
-
-          const formattedDate = start.toLocaleDateString([], {
-            month: "short",
-            day: "numeric",
-            year: "numeric"
-          });
-
-          const formattedTime = event.start.dateTime
-            ? start.toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit"
-              })
-            : "All day";
-
-          const card = document.createElement("div");
-          card.className = "event-card";
-
-<script>
-  const API_KEY = "YOUR_API_KEY_HERE";
+  const API_KEY = "AIzaSyBw6ni89vkOM_8V1yJ0cvfrhAFENk3AGHk";
   const CALENDAR_ID = "cgplatform.contact@gmail.com";
 
   function escapeHtml(text) {
@@ -206,9 +159,9 @@
       } else if (line.startsWith("Event Link:")) {
         const inline = line.replace("Event Link:", "").trim();
         if (inline) eventLink = inline;
-      } else if (line.startsWith("http")) {
-        eventLink = line;
-      } else if (line !== "Submitted via Common Ground") {
+      } else if (line.startsWith("http://") || line.startsWith("https://")) {
+        if (!eventLink) eventLink = line;
+      } else if (line !== "Submitted via Common Ground" && !line.startsWith("Hosted by organization:")) {
         bodyLines.push(line);
       }
     }
@@ -224,17 +177,16 @@
   }
 
   async function loadEvents() {
+    const container = document.getElementById("events");
     const now = new Date().toISOString();
     const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${now}&maxResults=6&singleEvents=true&orderBy=startTime`;
-
-    const container = document.getElementById("events");
 
     try {
       const res = await fetch(url);
       const data = await res.json();
 
       if (!res.ok) {
-        console.error(data);
+        console.error("API error:", data);
         container.innerHTML = "<p>Unable to load events right now.</p>";
         return;
       }
@@ -276,20 +228,16 @@
         card.innerHTML = `
           <p class="event-date">${formattedDate} · ${formattedTime}</p>
           <h3>${escapeHtml(event.summary || "Untitled Event")}</h3>
-
           ${parsed.location ? `<p class="event-location">${escapeHtml(parsed.location)}</p>` : ""}
-
           ${metaTags.length ? `<div class="event-meta-row">${metaTags.join("")}</div>` : ""}
-
           ${parsed.body ? `<p class="event-desc">${escapeHtml(parsed.body)}</p>` : ""}
-
-          ${parsed.eventLink ? `<p><a class="event-link" href="${escapeHtml(parsed.eventLink)}" target="_blank">View event details</a></p>` : ""}
+          ${parsed.eventLink ? `<p class="event-link-row"><a class="event-link" href="${escapeHtml(parsed.eventLink)}" target="_blank" rel="noopener noreferrer">View event details</a></p>` : ""}
         `;
 
         container.appendChild(card);
       });
     } catch (error) {
-      console.error(error);
+      console.error("Fetch failed:", error);
       container.innerHTML = "<p>Unable to load events right now.</p>";
     }
   }
