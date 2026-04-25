@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 
 <body>
@@ -27,6 +27,34 @@
       <p class="subtitle">
         Search by need, filter by category, and compare trusted organizations in a clearer directory built around action.
       </p>
+    </section>
+
+    <section class="start-here-feature" aria-label="Guided starting points">
+      <div class="start-here-copy">
+        <p class="page-kicker">Start here</p>
+        <h2>Not sure what to search? Choose the situation first.</h2>
+        <p>
+          These shortcuts turn common problems into a focused starting point, then send you directly to matching resources.
+        </p>
+      </div>
+
+      <div class="start-here-cards">
+        <button type="button" class="guide-card" onclick="guideSearch('legal', 'rights')">
+          <span class="guide-icon">⚖️</span>
+          <strong>Legal or rights issue</strong>
+          <small>Immigration guidance, rights information, and legal aid directories.</small>
+        </button>
+        <button type="button" class="guide-card" onclick="guideSearch('healthcare', 'clinic')">
+          <span class="guide-icon">🏥</span>
+          <strong>Healthcare access</strong>
+          <small>Low-cost clinics, health centers, and support services.</small>
+        </button>
+        <button type="button" class="guide-card" onclick="guideSearch('basic', 'emergency')">
+          <span class="guide-icon">🚨</span>
+          <strong>Food, housing, or crisis support</strong>
+          <small>Emergency help, shelter, food banks, and basic needs.</small>
+        </button>
+      </div>
     </section>
 
     <main class="resource-shell">
@@ -329,6 +357,25 @@
 
       button.classList.add("active");
       applyFilters();
+    }
+
+    function guideSearch(category, keyword) {
+      const searchInput = document.getElementById("searchInput");
+      const targetButton = document.querySelector(`.filter-btn[data-category="${category}"]`);
+
+      searchInput.value = keyword;
+      currentCategory = category;
+
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      if (targetButton) {
+        targetButton.classList.add("active");
+      }
+
+      applyFilters();
+      document.querySelector(".resources-grid").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function applyFilters() {
