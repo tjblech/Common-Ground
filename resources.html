@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resources - Common Ground</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 
 <body>
@@ -15,174 +20,287 @@
       <a href="community.html">Community</a>
     </nav>
 
-    <div class="hero">
-      <h1>Resources</h1>
+    <section class="hero">
+      <p class="page-kicker">Resource Finder</p>
+      <h1>Find support without digging through scattered sites.</h1>
 
       <p class="subtitle">
-        A set of real, verified resources demonstrating the type of
-        information Common Ground aims to organize and expand.
+        Search by need, filter by category, and compare trusted organizations in a clearer directory built around action.
       </p>
-    </div>
+    </section>
 
-    <p style="margin-bottom: 8px; font-weight: 700; color: #334155;">
-      Search resources by keyword
-    </p>
-
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Search resources..."
-      onkeyup="applyFilters()"
-      style="
-        width: 100%;
-        padding: 14px 16px;
-        margin-bottom: 24px;
-        border-radius: 12px;
-        border: 1px solid #dbe4f0;
-        font-size: 16px;
-        outline: none;
-        box-sizing: border-box;
-      "
-      aria-label="Search resources"
-    >
-
-    <div class="filters">
-      <button class="filter-btn active" data-category="all" onclick="setCategory('all', this)">All</button>
-      <button class="filter-btn" data-category="legal" onclick="setCategory('legal', this)">Legal</button>
-      <button class="filter-btn" data-category="healthcare" onclick="setCategory('healthcare', this)">Healthcare</button>
-      <button class="filter-btn" data-category="basic" onclick="setCategory('basic', this)">Basic Needs</button>
-      <button class="filter-btn" data-category="community" onclick="setCategory('community', this)">Community</button>
-      <button class="filter-btn" data-category="government" onclick="setCategory('government', this)">Government</button>
-    </div>
-
-    <div id="noResults" class="no-results" style="display: none;">
-      No resources matched your current search or category filter.
-    </div>
-
-    <div class="grid">
-      <div class="section resource-card" data-category="legal">
-        <span class="tag tag-legal">LEGAL</span>
-        <h2>Immigration Legal Aid</h2>
+    <main class="resource-shell">
+      <aside class="resource-panel" aria-label="Resource filters">
+        <h2>Search the directory</h2>
         <p>
-          <a href="https://www.aila.org" target="_blank">
-            American Immigration Lawyers Association (AILA)
-          </a><br>
-          Professional network providing legal resources and guidance on immigration law.
+          Start broad, then narrow by category. Each card highlights coverage, cost, and what the resource is useful for.
         </p>
-      </div>
 
-      <div class="section resource-card" data-category="healthcare">
-        <span class="tag tag-health">HEALTHCARE</span>
-        <h2>Healthcare Access</h2>
-        <p>
-          <a href="https://findahealthcenter.hrsa.gov" target="_blank">
-            HRSA Health Center Finder
-          </a><br>
-          Locate low-cost and sliding-scale community health clinics across the U.S.
+        <label class="search-label" for="searchInput">Keyword search</label>
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Try legal, food, clinic, rights..."
+          onkeyup="applyFilters()"
+          aria-label="Search resources"
+        >
+
+        <div class="filters">
+          <button class="filter-btn active" data-category="all" onclick="setCategory('all', this)">All</button>
+          <button class="filter-btn" data-category="legal" onclick="setCategory('legal', this)">Legal</button>
+          <button class="filter-btn" data-category="healthcare" onclick="setCategory('healthcare', this)">Healthcare</button>
+          <button class="filter-btn" data-category="basic" onclick="setCategory('basic', this)">Basic Needs</button>
+          <button class="filter-btn" data-category="community" onclick="setCategory('community', this)">Community</button>
+          <button class="filter-btn" data-category="government" onclick="setCategory('government', this)">Government</button>
+        </div>
+
+        <p class="panel-note">
+          Common Ground is designed to make trusted resources easier to scan, compare, and act on.
         </p>
-      </div>
+      </aside>
 
-      <div class="section resource-card" data-category="legal">
-        <span class="tag tag-legal">LEGAL</span>
-        <h2>Know Your Rights</h2>
-        <p>
-          <a href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank">
-            ACLU Immigrants' Rights
-          </a><br>
-          Clear information on legal rights during immigration interactions.
-        </p>
-      </div>
+      <section aria-label="Resource results">
+        <div id="noResults" class="no-results">
+          No resources matched your current search or category filter.
+        </div>
 
-      <div class="section resource-card" data-category="community">
-        <span class="tag tag-community">COMMUNITY</span>
-        <h2>Refugee Support</h2>
-        <p>
-          <a href="https://www.rescue.org" target="_blank">
-            International Rescue Committee (IRC)
-          </a><br>
-          Provides support services for refugees and displaced individuals.
-        </p>
-      </div>
+        <div class="resources-grid">
+          <article class="section resource-card" data-category="legal">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">⚖️</span>
+                <div>
+                  <span class="tag tag-legal">Legal</span>
+                  <h2>Immigration Legal Aid</h2>
+                </div>
+              </div>
+              <p>
+                Professional network providing immigration law resources, attorney directories, and legal guidance.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">National</span>
+                <span class="meta-tag">Legal guidance</span>
+                <span class="meta-tag">Directory</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.aila.org" target="_blank" rel="noopener noreferrer">Visit AILA</a>
+          </article>
 
-      <div class="section resource-card" data-category="government">
-        <span class="tag tag-government">GOVERNMENT</span>
-        <h2>Public Benefits</h2>
-        <p>
-          <a href="https://www.benefits.gov" target="_blank">
-            Benefits.gov
-          </a><br>
-          Helps users identify eligibility for government assistance programs.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="healthcare">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🏥</span>
+                <div>
+                  <span class="tag tag-health">Healthcare</span>
+                  <h2>Healthcare Access</h2>
+                </div>
+              </div>
+              <p>
+                Locate low-cost and sliding-scale community health clinics across the United States.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Low-cost</span>
+                <span class="meta-tag">Clinics</span>
+                <span class="meta-tag">Location search</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://findahealthcenter.hrsa.gov" target="_blank" rel="noopener noreferrer">Find a clinic</a>
+          </article>
 
-      <div class="section resource-card" data-category="basic">
-        <span class="tag tag-basic">BASIC NEEDS</span>
-        <h2>Housing Support</h2>
-        <p>
-          <a href="https://www.hud.gov/topics/rental_assistance" target="_blank">
-            HUD Rental Assistance Programs
-          </a><br>
-          Federal housing assistance programs for individuals and families.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="legal">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🛡️</span>
+                <div>
+                  <span class="tag tag-legal">Legal</span>
+                  <h2>Know Your Rights</h2>
+                </div>
+              </div>
+              <p>
+                Clear information on immigrant rights during immigration interactions, stops, and workplace situations.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Rights info</span>
+                <span class="meta-tag">Plain language</span>
+                <span class="meta-tag">Emergency use</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.aclu.org/know-your-rights/immigrants-rights" target="_blank" rel="noopener noreferrer">Read rights guide</a>
+          </article>
 
-      <div class="section resource-card" data-category="basic">
-        <span class="tag tag-basic">BASIC NEEDS</span>
-        <h2>Food Assistance</h2>
-        <p>
-          <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">
-            Feeding America Food Bank Locator
-          </a><br>
-          Find local food banks and emergency food resources.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="community">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🤝</span>
+                <div>
+                  <span class="tag tag-community">Community</span>
+                  <h2>Refugee Support</h2>
+                </div>
+              </div>
+              <p>
+                Support services for refugees and displaced individuals, including resettlement and community programs.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Refugees</span>
+                <span class="meta-tag">Resettlement</span>
+                <span class="meta-tag">Support services</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.rescue.org" target="_blank" rel="noopener noreferrer">Visit IRC</a>
+          </article>
 
-      <div class="section resource-card" data-category="community">
-        <span class="tag tag-community">COMMUNITY</span>
-        <h2>Language & Integration</h2>
-        <p>
-          <a href="https://www.usahello.org" target="_blank">
-            USAHello
-          </a><br>
-          Free educational resources, ESL tools, and support for newcomers.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="government">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🏛️</span>
+                <div>
+                  <span class="tag tag-government">Government</span>
+                  <h2>Public Benefits</h2>
+                </div>
+              </div>
+              <p>
+                Helps users identify potential eligibility for government assistance programs and benefits.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Eligibility</span>
+                <span class="meta-tag">Benefits</span>
+                <span class="meta-tag">Federal</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.benefits.gov" target="_blank" rel="noopener noreferrer">Check benefits</a>
+          </article>
 
-      <div class="section resource-card" data-category="basic">
-        <span class="tag tag-basic">BASIC NEEDS</span>
-        <h2>Emergency Assistance</h2>
-        <p>
-          <a href="https://www.redcross.org" target="_blank">
-            American Red Cross
-          </a><br>
-          Emergency shelter, disaster relief, and crisis support services.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="basic">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🏠</span>
+                <div>
+                  <span class="tag tag-basic">Basic Needs</span>
+                  <h2>Housing Support</h2>
+                </div>
+              </div>
+              <p>
+                Federal rental assistance information and housing support programs for individuals and families.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Housing</span>
+                <span class="meta-tag">Rental help</span>
+                <span class="meta-tag">Federal</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.hud.gov/topics/rental_assistance" target="_blank" rel="noopener noreferrer">View HUD help</a>
+          </article>
 
-      <div class="section resource-card" data-category="healthcare">
-        <span class="tag tag-health">HEALTHCARE</span>
-        <h2>Mental Health Support</h2>
-        <p>
-          <a href="https://www.nami.org" target="_blank">
-            National Alliance on Mental Illness (NAMI)
-          </a><br>
-          Mental health education, support groups, and resources for individuals and families.
-        </p>
-      </div>
+          <article class="section resource-card" data-category="basic">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🥫</span>
+                <div>
+                  <span class="tag tag-basic">Basic Needs</span>
+                  <h2>Food Assistance</h2>
+                </div>
+              </div>
+              <p>
+                Find nearby food banks and emergency food resources through a national locator.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Food banks</span>
+                <span class="meta-tag">Emergency help</span>
+                <span class="meta-tag">Location search</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank" rel="noopener noreferrer">Find food banks</a>
+          </article>
 
-      <div class="section resource-card" data-category="legal">
-        <span class="tag tag-legal">LEGAL</span>
-        <h2>Legal Self-Help</h2>
-        <p>
-          <a href="https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help" target="_blank">
-            Legal Services Corporation
-          </a><br>
-          Directory of free legal aid organizations across the U.S.
-        </p>
-      </div>
-    </div>
+          <article class="section resource-card" data-category="community">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🌎</span>
+                <div>
+                  <span class="tag tag-community">Community</span>
+                  <h2>Language & Integration</h2>
+                </div>
+              </div>
+              <p>
+                Free educational resources, ESL tools, citizenship information, and newcomer support.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">ESL</span>
+                <span class="meta-tag">Education</span>
+                <span class="meta-tag">Newcomers</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.usahello.org" target="_blank" rel="noopener noreferrer">Visit USAHello</a>
+          </article>
 
-    <div class="footer">
+          <article class="section resource-card" data-category="basic">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">🚨</span>
+                <div>
+                  <span class="tag tag-basic">Basic Needs</span>
+                  <h2>Emergency Assistance</h2>
+                </div>
+              </div>
+              <p>
+                Emergency shelter, disaster relief, crisis support, and recovery resources.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Crisis support</span>
+                <span class="meta-tag">Shelter</span>
+                <span class="meta-tag">Disaster relief</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.redcross.org" target="_blank" rel="noopener noreferrer">Get emergency help</a>
+          </article>
+
+          <article class="section resource-card" data-category="healthcare">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">💬</span>
+                <div>
+                  <span class="tag tag-health">Healthcare</span>
+                  <h2>Mental Health Support</h2>
+                </div>
+              </div>
+              <p>
+                Mental health education, support groups, and resources for individuals and families.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Support groups</span>
+                <span class="meta-tag">Education</span>
+                <span class="meta-tag">Family support</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.nami.org" target="_blank" rel="noopener noreferrer">Visit NAMI</a>
+          </article>
+
+          <article class="section resource-card" data-category="legal">
+            <div>
+              <div class="resource-top">
+                <span class="resource-icon">📄</span>
+                <div>
+                  <span class="tag tag-legal">Legal</span>
+                  <h2>Legal Self-Help</h2>
+                </div>
+              </div>
+              <p>
+                Directory of free legal aid organizations and information about how to find civil legal help.
+              </p>
+              <div class="meta-row">
+                <span class="meta-tag">Free legal aid</span>
+                <span class="meta-tag">Civil legal help</span>
+                <span class="meta-tag">Directory</span>
+              </div>
+            </div>
+            <a class="resource-action" href="https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help" target="_blank" rel="noopener noreferrer">Find legal help</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
       <div class="footer-top">
         <div>
           <p class="footer-title">Common Ground</p>
@@ -195,7 +313,7 @@
           Reach Out
         </a>
       </div>
-    </div>
+    </footer>
     
   </div>
 
@@ -214,31 +332,27 @@
     }
 
     function applyFilters() {
-      let input = document.getElementById("searchInput").value.toLowerCase();
-      let cards = document.querySelectorAll(".resource-card");
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".resource-card");
       let visibleCount = 0;
 
       cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
-        let category = card.getAttribute("data-category");
+        const text = card.innerText.toLowerCase();
+        const category = card.getAttribute("data-category");
 
-        let matchesSearch = text.includes(input);
-        let matchesCategory = currentCategory === "all" || category === currentCategory;
+        const matchesSearch = text.includes(input);
+        const matchesCategory = currentCategory === "all" || category === currentCategory;
 
         if (matchesSearch && matchesCategory) {
-          card.style.display = "block";
+          card.style.display = "flex";
           visibleCount++;
         } else {
           card.style.display = "none";
         }
       });
 
-      let noResults = document.getElementById("noResults");
-      if (visibleCount === 0) {
-        noResults.style.display = "block";
-      } else {
-        noResults.style.display = "none";
-      }
+      const noResults = document.getElementById("noResults");
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
     }
 
     applyFilters();
